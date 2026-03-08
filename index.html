@@ -2,31 +2,31 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<title>MD 顯示範例</title>
-<!-- 載入 Marked.js -->
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<title>MD 測試</title>
+<!-- <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script> -->
 <style>
-  body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+  body { font-family: sans-serif; padding: 20px; }
   pre { background: #f5f5f5; padding: 10px; overflow-x: auto; }
   code { font-family: monospace; }
 </style>
 </head>
 <body>
 
-<h1>Markdown 文件顯示</h1>
-<div id="md-content"></div>
+<h1>Markdown 測試頁</h1>
+<div id="md-content">載入中…</div>
 
-<script>
-  // 1️⃣ 讀取 MD 檔案
-  fetch('01-SP-Basic.md')
-    .then(response => response.text())
-    .then(mdText => {
-      // 2️⃣ 轉換 Markdown → HTML
-      document.getElementById('md-content').innerHTML = marked(mdText);
-    })
-    .catch(err => {
-      document.getElementById('md-content').innerHTML = '載入 MD 檔案失敗：' + err;
-    });
+<script type="module">
+import { marked } from 'https://cdn.jsdelivr.net/npm/marked@5.1.0/lib/marked.esm.js';
+
+fetch('md/01-SP-Basic.md')
+  .then(res => res.text())
+  .then(mdText => {
+    document.getElementById('md-content').innerHTML = marked(mdText);
+  })
+  .catch(err => {
+    document.getElementById('md-content').innerHTML = '載入 MD 檔案失敗：' + err;
+  });
 </script>
 
 </body>
